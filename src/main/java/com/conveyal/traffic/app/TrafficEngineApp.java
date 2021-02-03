@@ -26,6 +26,7 @@ import org.opentripplanner.routing.core.TraverseModeSet;
 import java.awt.*;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -328,7 +329,8 @@ public class TrafficEngineApp {
 		ByteBuffer buffer = ByteBuffer.allocate(Long.SIZE / 8);  
 		
 		buffer.put(md.digest(), 0, Long.SIZE / 8);
-        buffer.flip();//need flip
+        // buffer.flip();//need flip
+		((Buffer)buffer).flip();
 
 		vehicleIdMap.put(data, buffer.getLong());
         return vehicleIdMap.get(data);
